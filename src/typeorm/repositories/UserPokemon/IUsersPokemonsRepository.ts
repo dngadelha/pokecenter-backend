@@ -17,6 +17,14 @@ export interface IUsersPokemonsRepository extends IBaseRepository<UserPokemon, I
   /**
    * Obtém todos os Pokémons capturados por um usuário.
    * @param userId ID do usuário.
+   * @param limit Limite de pokémons a serem retornados.
+   * @param offset Índice do primeiro pokémon a ser retornado.
    */
-  findAllByUserId(userId: string): Promise<IPokemonDTO[]>;
+  findAllByUserId(userId: string, limit?: number, offset?: number): Promise<IPokemonDTO[]>;
+
+  /**
+   * Obtém a quantidade de Pokémons capturados por um usuário.
+   * @param userId ID do usuário.
+   */
+  countByUserId(userId: string): Promise<number>;
 }

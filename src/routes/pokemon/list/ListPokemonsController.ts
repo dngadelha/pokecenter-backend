@@ -7,7 +7,6 @@ export class ListPokemonsController {
     const useCase = container.resolve(ListPokemonsUseCase);
     const useCaseResponse = await useCase.execute({
       ...request.body,
-      userId: request.userId,
     });
 
     return response.status(200).json(useCaseResponse);

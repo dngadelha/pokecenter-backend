@@ -1,3 +1,5 @@
+import { IUserDTO } from "@backend-typeorm/entities/User/IUserDTO";
+
 /**
  * Estado da requisição.
  */
@@ -18,7 +20,7 @@ export enum BaseRequestStatus {
  */
 export interface IRequest {
   /**
-   * ID do usuário que fez a requisição.
+   * Entidade do usuário que fez a requisição.
    */
-  userId?: string;
+  user?: IUserDTO;
 }

@@ -19,6 +19,11 @@ export class CreateUsersPokemonsTable1667615948081 implements MigrationInterface
             name: "pokemon_id",
             type: "integer",
           }),
+          new TableColumn({
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          }),
         ],
         foreignKeys: [
           new TableForeignKey({

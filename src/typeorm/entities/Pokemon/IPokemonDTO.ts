@@ -3,6 +3,11 @@
  */
 export interface IPokemonDTO {
   /**
+   * ID do Pokémon.
+   */
+  id?: number;
+
+  /**
    * Nome do Pokémon.
    */
   name: string;

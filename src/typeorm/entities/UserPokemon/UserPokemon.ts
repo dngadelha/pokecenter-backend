@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
 import { IUserPokemonDTO } from "./IUserPokemonDTO";
@@ -25,6 +25,12 @@ export class UserPokemon implements IUserPokemonDTO {
    */
   @Column()
   pokemon_id: number;
+
+  /**
+   * Data de captura do pokémon.
+   */
+  @CreateDateColumn()
+  created_at: Date;
 
   constructor() {
     if (!this.id) {

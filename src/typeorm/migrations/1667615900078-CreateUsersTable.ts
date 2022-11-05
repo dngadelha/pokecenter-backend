@@ -15,6 +15,11 @@ export class CreateUsersTable1667615900078 implements MigrationInterface {
             name: "name",
             type: "text",
           }),
+          new TableColumn({
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          }),
         ],
       }),
     );

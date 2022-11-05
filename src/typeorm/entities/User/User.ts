@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
 import { IUserDTO } from "./IUserDTO";
@@ -19,6 +19,12 @@ export class User implements IUserDTO {
    */
   @Column()
   name: string;
+
+  /**
+   * Data de cadastro do usuário.
+   */
+  @CreateDateColumn()
+  created_at: Date;
 
   constructor() {
     if (!this.id) {

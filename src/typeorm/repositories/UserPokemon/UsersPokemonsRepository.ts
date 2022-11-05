@@ -37,17 +37,41 @@ export class UsersPokemonsRepository extends BaseRepository<UserPokemon, IUserPo
   /**
    * Obtém todos os Pokémons capturados por um usuário.
    * @param userId ID do usuário.
+   * @param limit Limite de pokémons a serem retornados.
+   * @param offset Índice do primeiro pokémon a ser retornado.
    */
-  async findAllByUserId(userId: string): Promise<IPokemonDTO[]> {
+  async findAllByUserId(userId: string, limit?: number, offset?: number): Promise<IPokemonDTO[]> {
     const tableName = this.getTableName();
-    const query = await this.dataSource
+
+    // Montar a consulta.
+    let query = this.dataSource
       .createQueryBuilder()
       .select("*")
       .from("pokemons", "pokemons")
-      .innerJoin(this.getTableName(), `${tableName}.pokemon_id`, "pokemons.id")
+      .innerJoin(tableName, tableName, `${tableName}.pokemon_id = pokemons.id`)
       .where(`${tableName}.user_id = :userId`, { userId })
-      .getMany();
+      .orderBy(`${tableName}.created_at`, "DESC");
 
-    return query as IPokemonDTO[];
+    // Aplicar o limite.
+    if (limit) query = query.limit(limit);
+
+    // Aplicar o offset.
+    if (offset) query = query.offset(offset);
+
+    // Obter e retornar os dados.
+    const result = await query.getMany();
+    return result as IPokemonDTO[];
+  }
+
+  /**
+   * Obtém a quantidade de Pokémons capturados por um usuário.
+   * @param userId ID do usuário.
+   */
+  countByUserId(userId: string): Promise<number> {
+    return this.repository.count({
+      where: {
+        user_id: userId,
+      },
+    });
   }
 }

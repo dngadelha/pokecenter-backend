@@ -15,7 +15,7 @@ export class CapturePokemonUseCase {
   ) { }
 
   async execute({
-    userId,
+    user,
     name,
   }: ICapturePokemonRequest) {
     const response: IResponse<CapturePokemonRequestStatus, ICapturePokemonResponse> = {
@@ -32,7 +32,7 @@ export class CapturePokemonUseCase {
     }
 
     // Obter o Pokémon capturado pelo ID do usuário e ID do Pokémon.
-    const userPokemon = await this.usersPokemonsRepository.findOneByUserAndPokemon(userId, pokemon.id);
+    const userPokemon = await this.usersPokemonsRepository.findOneByUserAndPokemon(user!.id, pokemon.id);
 
     // Verificar se o Pokémon já foi capturado pelo usuário.
     if (userPokemon) {
@@ -42,7 +42,7 @@ export class CapturePokemonUseCase {
 
     // Capturar o Pokémon.
     await this.usersPokemonsRepository.create({
-      user_id: userId,
+      user_id: user!.id,
       pokemon_id: pokemon.id,
     });
 

@@ -7,7 +7,6 @@ export class CreateUserController {
     const useCase = container.resolve(CreateUserUseCase);
     const useCaseResponse = await useCase.execute({
       ...request.body,
-      userId: request.userId,
     });
 
     return response.status(200).json(useCaseResponse);
