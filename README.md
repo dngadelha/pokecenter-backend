@@ -19,7 +19,7 @@ O back-end do Pokecenter é um projeto que utiliza o [Node.js](https://nodejs.or
 docker-compose up -d --build
 ```
 
-Após isso, a API estará acessível através da porta 5000.
+Após isso, a API estará acessível através da porta `5000`.
 
 
 ## Sobre o Projeto
