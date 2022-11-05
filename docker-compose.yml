@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  pokecenter-db:
+    image: postgres
+    container_name: pokecenter-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=xFpKMyJTm02LMvf9AUaH2caZ8VUoJve0
+      - POSTGRES_DB=pokecenter
