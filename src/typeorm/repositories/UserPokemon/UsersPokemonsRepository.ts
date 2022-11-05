@@ -46,7 +46,7 @@ export class UsersPokemonsRepository extends BaseRepository<UserPokemon, IUserPo
     // Montar a consulta.
     let query = this.dataSource
       .createQueryBuilder()
-      .select("*")
+      .select("\"pokemons\".*")
       .from("pokemons", "pokemons")
       .innerJoin(tableName, tableName, `${tableName}.pokemon_id = pokemons.id`)
       .where(`${tableName}.user_id = :userId`, { userId })
@@ -59,7 +59,7 @@ export class UsersPokemonsRepository extends BaseRepository<UserPokemon, IUserPo
     if (offset) query = query.offset(offset);
 
     // Obter e retornar os dados.
-    const result = await query.getMany();
+    const result = await query.getRawMany();
     return result as IPokemonDTO[];
   }
 
