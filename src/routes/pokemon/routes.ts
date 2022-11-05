@@ -10,6 +10,6 @@ PokemonRoutes.post("/pokemon/capture", ensureAuthenticated, (request, response) 
   CapturePokemonController.handle(request, response)
 );
 
-PokemonRoutes.post("/pokemon/list", ensureAuthenticated, (request, response) =>
+PokemonRoutes.post("/pokemon/list", (request, response) =>
   ListPokemonsController.handle(request, response)
 );
