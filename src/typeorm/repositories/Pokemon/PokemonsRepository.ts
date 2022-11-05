@@ -43,4 +43,31 @@ export class PokemonsRepository extends BaseRepository<Pokemon, IPokemonDTO> imp
       .offset(offset)
       .getMany();
   }
+
+  /**
+   * Obtém todos os pokémons que contenham um nome.
+   * @param name Nome do Pokémon.
+   * @param limit Limite de pokémons a serem retornados.
+   * @param offset Índice do primeiro pokémon a ser retornado.
+   */
+  findAllByNameLike(name: string, limit?: number, offset?: number): Promise<Pokemon[]> {
+    return this.repository
+      .createQueryBuilder(this.getTableName())
+      .where("LOWER(name) LIKE :name", { name: `%${name.toLowerCase()}%` })
+      .orderBy("id", "ASC")
+      .limit(limit)
+      .offset(offset)
+      .getMany();
+  }
+
+  /**
+   * Obtém o total de entidades do banco de dados que contenham um nome.
+   * @param name Nome do Pokémon.
+   */
+  countAllByNameLike(name: string): Promise<number> {
+    return this.repository
+      .createQueryBuilder(this.getTableName())
+      .where("LOWER(name) LIKE :name", { name: `%${name.toLowerCase()}%` })
+      .getCount();
+  }
 }

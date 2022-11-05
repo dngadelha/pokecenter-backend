@@ -12,6 +12,7 @@ export class ListPokemonsUseCase {
   ) { }
 
   async execute({
+    name,
     limit,
     offset,
   }: IListPokemonsRequest) {
@@ -20,10 +21,14 @@ export class ListPokemonsUseCase {
     };
 
     // Obter todos os pokémons.
-    const pokemons = await this.pokemonsRepository.findAll(limit, offset);
+    const pokemons = (name && name.trim().length > 0) ?
+      await this.pokemonsRepository.findAllByNameLike(name, limit, offset) :
+      await this.pokemonsRepository.findAll(limit, offset);
 
     // Obter total de pokémons cadastrados.
-    const count = await this.pokemonsRepository.countAll();
+    const count = (name && name.trim().length > 0) ?
+      await this.pokemonsRepository.countAllByNameLike(name) :
+      await this.pokemonsRepository.countAll();
 
     // Montar resultado da resposta.
     response.result = {

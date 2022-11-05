@@ -13,6 +13,11 @@ export enum ListPokemonsRequestStatus {
  */
 export interface IListPokemonsRequest extends IRequest {
   /**
+   * Buscar Pokémons contendo o nome.
+   */
+  name?: string;
+
+  /**
    * Limites de Pokémons a serem retornados.
    */
   limit?: number;

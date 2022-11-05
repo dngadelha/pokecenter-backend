@@ -18,4 +18,18 @@ export interface IPokemonsRepository extends IBaseRepository<Pokemon, IPokemonDT
    * @param offset Índice do primeiro pokémon a ser retornado.
    */
   findAll(limit?: number, offset?: number): Promise<Pokemon[]>;
+
+  /**
+   * Obtém todos os pokémons que contenham um nome.
+   * @param name Nome do Pokémon.
+   * @param limit Limite de pokémons a serem retornados.
+   * @param offset Índice do primeiro pokémon a ser retornado.
+   */
+  findAllByNameLike(name: string, limit?: number, offset?: number): Promise<Pokemon[]>;
+
+  /**
+   * Obtém o total de entidades do banco de dados que contenham um nome.
+   * @param name Nome do Pokémon.
+   */
+  countAllByNameLike(name: string): Promise<number>;
 }
