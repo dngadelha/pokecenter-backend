@@ -9,6 +9,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "strict": false,
+    "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "removeComments": true,

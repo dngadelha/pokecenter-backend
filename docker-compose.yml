@@ -1,12 +1,33 @@
 version: "3.7"
 
 services:
-  pokecenter-db:
+  pokecenter_db:
     image: postgres
-    container_name: pokecenter-db
-    restart: always
+    container_name: pokecenter_db
+    env_file: ./.env
+    networks:
+      - pokecenter_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "postgres"]
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+
+  pokecenter_backend:
+    build:
+      context: .
+    container_name: pokecenter_backend
+    env_file: ./.env
+    depends_on:
+      pokecenter_db:
+        condition: service_healthy
+    networks:
+      - pokecenter_network
     ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_PASSWORD=xFpKMyJTm02LMvf9AUaH2caZ8VUoJve0
-      - POSTGRES_DB=pokecenter
+      - 5000:5000
+    command: [sh, -c, "cd /usr/src/app && npm run migration:run && npm run start"]
+
+networks:
+  pokecenter_network:
+    driver: bridge
+    name: pokecenter_network
