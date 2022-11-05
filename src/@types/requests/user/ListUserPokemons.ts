@@ -12,7 +12,15 @@ export enum ListUserPokemonsRequestStatus {
  * Request de listagem de Pokémons capturados pelo usuário.
  */
 export interface IListUserPokemonsRequest extends IRequest {
+  /**
+   * Limites de Pokémons a serem retornados.
+   */
+  limit?: number;
 
+  /**
+   * Índice do primeiro Pokémon a ser retornado.
+   */
+  offset?: number;
 }
 
 /**
@@ -23,4 +31,9 @@ export interface IListUserPokemonsResponse {
    * Lista de Pokémons capturados pelo usuário.
    */
   pokemons: IPokemonDTO[];
+
+  /**
+   * Total de Pokémons capturados pelo usuário.
+   */
+  count: number;
 }

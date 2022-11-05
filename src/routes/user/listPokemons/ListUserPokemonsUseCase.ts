@@ -14,17 +14,23 @@ export class ListUserPokemonsUseCase {
 
   async execute({
     user,
+    limit,
+    offset,
   }: IListUserPokemonsRequest) {
     const response: IResponse<ListUserPokemonsRequestStatus, IListUserPokemonsResponse> = {
       status: BaseRequestStatus.Success,
     };
 
     // Obter todos os pokémons do usuário.
-    const pokemons = await this.usersPokemonsRepository.findAllByUserId(user!.id);
+    const pokemons = await this.usersPokemonsRepository.findAllByUserId(user!.id, limit, offset);
+
+    // Obter o total de pokémons capturados pelo usuário.
+    const count = await this.usersPokemonsRepository.countByUserId(user!.id);
 
     // Montar resultado da resposta.
     response.result = {
       pokemons,
+      count,
     };
 
     return response;
