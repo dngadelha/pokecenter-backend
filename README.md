@@ -11,7 +11,7 @@ O Pokecenter é um projeto que utiliza o framework [Angular](https://angular.io/
 - [`@dngadelha/pokecenter-backend`](https://github.com/dngadelha/pokecenter-backend): Projeto que contém o back-end da aplicação.
 
 
-## Iniciando o back-end localmente
+## Executando o back-end localmente
 
 1. Suba o back-end no Docker:
 
