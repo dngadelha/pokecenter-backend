@@ -5,7 +5,7 @@ Projeto do back-end do Pokecenter.
 
 ## Estrutura do projeto
 
-O Pokecenter é um projeto que utiliza o framework [Angular](https://angular.io/), [RxJS](https://rxjs.dev/) e [Node.js](https://nodejs.org/). Ele é dividido em 2 repositórios:
+O back-end do Pokecenter é um projeto que utiliza o [Node.js](https://nodejs.org/), [TypeORM](https://typeorm.io/) e [Docker](https://www.docker.com/). Ele é dividido em 2 repositórios:
 
 - [`@dngadelha/pokecenter`](https://github.com/dngadelha/pokecenter): Projeto que contém o front-end da aplicação.
 - [`@dngadelha/pokecenter-backend`](https://github.com/dngadelha/pokecenter-backend): Projeto que contém o back-end da aplicação.
