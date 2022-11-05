@@ -1,3 +1,4 @@
+import { IPokemonDTO } from "@backend-typeorm/entities/Pokemon/IPokemonDTO";
 import { IRequest } from "@backend-types/IRequest";
 
 /**
@@ -29,5 +30,8 @@ export interface ICapturePokemonRequest extends IRequest {
  * Resposta da requisição de captura de Pokémons.
  */
 export interface ICapturePokemonResponse {
-
+  /**
+   * Pokémon capturado.
+   */
+  pokemon: IPokemonDTO;
 }

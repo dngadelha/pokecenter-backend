@@ -46,6 +46,11 @@ export class CapturePokemonUseCase {
       pokemon_id: pokemon.id,
     });
 
+    // Retornar o Pokémon capturado.
+    response.result = {
+      pokemon,
+    };
+
     return response;
   }
 }
