@@ -16,6 +16,7 @@
     "allowUnreachableCode": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@backend-types/*": ["src/@types/*"],

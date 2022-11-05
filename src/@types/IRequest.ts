@@ -13,6 +13,11 @@ export enum BaseRequestStatus {
    * Indica que a operação deu erro interno no servidor.
    */
   Error = "error",
+
+  /**
+   * Indica que a página não foi encontrada.
+   */
+  NotFound = "not_found",
 }
 
 /**

@@ -13,8 +13,9 @@ export const AppDataSource = new DataSource({
   password: env.POSTGRES_PASSWORD,
   database: env.POSTGRES_DB,
   synchronize: false,
-  logging: false,
+  logging: true,
   entities,
   subscribers: [],
-  migrations: ["./src/typeorm/migrations/**/*.ts"],
+  migrations: ["./src/typeorm/migrations/**/*.{ts,js}"],
+  migrationsRun: true,
 });

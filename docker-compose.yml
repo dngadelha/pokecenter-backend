@@ -25,7 +25,6 @@ services:
       - pokecenter_network
     ports:
       - 5000:5000
-    command: [sh, -c, "cd /usr/src/app && npm run migration:run && npm run start"]
 
 networks:
   pokecenter_network:
